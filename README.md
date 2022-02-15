@@ -1,3 +1,8 @@
+
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6091478.svg)](https://doi.org/10.5281/zenodo.6091478)
+
+
 # First steps with R in Life Sciences
 
 This course material is part of the "First Steps with R in Life Science" two-day course of [SIB-training](https://www.sib.swiss/training/who-can-benefit) and is 
@@ -26,4 +31,8 @@ solutions codes can be found in the [`solutions/`](solutions/) folder (NB: pract
  * [Day 2 - morning slides](First-steps-with-R_day2_morning.pdf) discusses visualization in R and how to create and customize simple, yet efficient, graphics from your data
  * [Day 2 - afternoon slides](First-steps-with-R_day2_afternoon.pdf) introduces how to perform statistical analysis in R (be warned: this is not a statistics course and only aims to show how the language deals with it)
 
+## Citation
 
+If you enjoyed this course or found it beneficial and want to refer to it, please cite it as :
+
+Diana Marek, Leonore Wigger, & Wandrille Duchemin. (2022, February 15). Course material First steps with R in Life Sciences. Zenodo. https://doi.org/10.5281/zenodo.6091478
