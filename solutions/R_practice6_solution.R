@@ -18,7 +18,7 @@ getwd() # check where you are. If you didn't change anything, you will be in the
 # If you are not at your project root, set the directory to where you want to be
 # for example : setwd("D:/docs/R_Oct2020_exercises_live")
 
-mice_data <- read.table( "course_datasets/mice_data.csv" , header=T , sep="," ) # read in data with header and , separator
+mice_data <- read.table( "course_datasets/mice_data_mod.csv" , header=T , sep="," ) # read in data with header and , separator
 
 # 4) How many observations and variables does the dataset have?
 D = dim(mice_data)
@@ -38,6 +38,8 @@ str(mice_data)
 # $ diet    : chr  "HFD" "HFD" "HFD" "HFD" ...
 # $ genotype: chr  "WT" "WT" "WT" "WT" ...
 # $ weight  : num  31.2 32.1 30.3 45 39.2 38.8 41.8 46.2 35.8 35.4 ...
+# $ heartRate      : num  500 500 502 501 501 ...
+# $ respiratoryRate: num  110 112 109 125 117 ...
 
 # 6) Which variables appear to be categorical? Convert them to factors.
 mice_data$diet <- factor(mice_data$diet)
