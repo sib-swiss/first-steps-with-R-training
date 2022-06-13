@@ -28,8 +28,8 @@ solutions codes can be found in the [`solutions/`](solutions/) folder (NB: pract
  	* first contact with the language and software
  	* most common data types in R
  	* reading and writing data files with R
- * [Day 2 - morning slides](First-steps-with-R_day2_morning.pdf) discusses visualization in R and how to create and customize simple, yet efficient, graphics from your data
- * [Day 2 - afternoon slides](First-steps-with-R_day2_afternoon.pdf) introduces how to perform statistical analysis in R (be warned: this is not a statistics course and only aims to show how the language deals with it)
+ * [Day 2 - morning slides](slides/First-steps-with-R_day2_morning.pdf) discusses visualization in R and how to create and customize simple, yet efficient, graphics from your data
+ * [Day 2 - afternoon slides](slides/First-steps-with-R_day2_afternoon.pdf) introduces how to perform statistical analysis in R (be warned: this is not a statistics course and only aims to show how the language deals with it)
 
 ## Citation
 
