@@ -1,37 +1,84 @@
 # First Steps in R, Practice 8
 
-# 1) Make boxplots of weights from WT and KO mice. Customise with title, labels, colours.
+# 1) Make a multi-panel figure with the four graphics on one page, exporting the figure to a png file.
+#    Set width and height arguments in the call to png() to make it look nice.
 
-boxplot(weight ~ genotype, data= mice_data ,
-        col=c('orange', 'blue'),
+pdf("mice_data_plots_by_genotype.pdf", width=7, height=7, paper="a4") 
+
+# we want to make 4 plots on the same panel -> 2 rows and 2 columns
+par(mfrow=c(2,2))
+
+# Plot 1
+plot(mice_data$weight,mice_data$respiratoryRate, 
+     pch=19,
+     main="Respiratory Rate vs Weight in Mice",
+     xlab="Weight [g]", ylab="Respiratory Rate [bpm]",
+     col=c("orange", "blue")[mice_data$genotype]
+)
+
+legend("bottomright",
+       legend=levels(mice_data$genotype),
+       col=c("orange","blue"),
+       pch=19)
+
+abline(lm(mice_data$respiratoryRate ~ mice_data$weight),
+       col="black", lwd=1.5)
+
+# Plot 2
+boxplot(weight ~ genotype, data= mice_data,
+        col=c("orange", "blue"),
         main="Mouse Weight by Genotype"
 )
-points( weight ~ genotype, data= mice_data  )
+points(weight ~ genotype, data= mice_data)
 
-# 2) Make a barplot of weights from WT and KO mice using the means returned by tapply().
-#    Customise the barplot with title, labels, colours. 
-#    Optional: Add number of observations to each bar.
-#    Optional: add errors bars.
 
-M  <- tapply(mice_data$weight, mice_data$genotype, mean)
-SD <- tapply(mice_data$weight, mice_data$genotype, sd)
-N  <- table(mice_data$genotype)
-
-mids <- barplot(M,
-                main="Mouse Mean Weight",
-                col=c('orange', 'blue'),
-                names.arg=levels(mice_data$genotype),
-                ylim=c(0, max(M+SD))
+# Plot 3
+plot(mice_data$weight,mice_data$respiratoryRate, 
+     pch=19,
+     main="Respiratory Rate vs Weight in Mice",
+     xlab="Weight [g]", ylab="Respiratory Rate [bpm]",
+     col=c("darkred", "goldenrod")[mice_data$diet]
 )
-# the ylim argument is set to ensure that the top of en error bars will be seen
 
-# Add text at the midpoints(x) and at height 2 on the y-axis and write the number of observations
-text(mids, 2, paste0("n=", N), col='white' , cex=1.5)
+legend("bottomright",
+       legend=levels(mice_data$diet),
+       col=c("darkred","goldenrod"),
+       pch=19)
 
-# Use arrows to put sd error bars on the plot
-arrows(mids, M-( SD / sqrt(N) ),
-       mids, M+( SD / sqrt(N) ),
-       code=3, angle=90, length=0.1, lwd=2)
+abline(lm(mice_data$respiratoryRate ~ mice_data$weight),
+       col="black", lwd=1.5)
+
+# Plot4
+boxplot(weight ~ diet, data= mice_data,
+        col=c("darkred", "goldenrod"),
+        main="Mouse Weight by Diet"
+)
+points(weight ~ diet, data= mice_data)
+
+dev.off()
+
+
+# 2) Optional: Export the histogram (3 from previous exercise) to a png file. 
+# Set width and height arguments in the call to png() to make it look nice.
+
+# png: width and height are in pixels by default
+
+png("hist_weight.png", width=800, height=600)
+hist(mice_data$weight,
+     freq=FALSE, breaks=8,
+     main="Mouse Weight",
+     col="orange" ,
+     xlab="weight")
+lines(density(mice_data$weight), col='blue')
+dev.off()
+
+# 3) Look at the multi-panel figure. Are your impressions about mouse weight from yesterday's exploration of data summaries confirmed by today's visualizations?
+# Yes.
+# Genotpye: The two genotypes (KO v WT) have very similar mean weights.
+# Diet: Mice on HFD are heavier on average than mice on CHOW diet, and their weights are more variable.
+
+
+
 
 
 
