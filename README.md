@@ -6,7 +6,7 @@
 
 # First steps with R in Life Sciences
 
-This course material is part of the "First Steps with R in Life Science" two-day course of [SIB-training](https://www.sib.swiss/training/who-can-benefit) and is 
+This course material is part of the "First Steps with R in Life Science" two-day course of [SIB Training](https://www.sib.swiss/training/upcoming-training-courses) and is 
  addressed to beginners wanting to become familiar with the R syntax, environment, and the most common commands to start using R to explore and interpret their data.
 
 This course material provides an introduction to [R](https://www.r-project.org/) and [Rstudio](https://www.rstudio.com/) (an integrated development environment for R) in an interactive manner. 
