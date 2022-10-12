@@ -1,6 +1,7 @@
 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6637311.svg)](https://doi.org/10.5281/zenodo.6637311)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7188724.svg)](https://doi.org/10.5281/zenodo.7188724)
 
 
 
@@ -36,4 +37,4 @@ solutions codes can be found in the [`solutions/`](solutions/) folder (NB: pract
 
 If you enjoyed this course or found it beneficial and want to refer to it, please cite it as :
 
-Leonore Wigger, Wandrille Duchemin, & Valeria di Cola. (2022, June 13). Course material First steps with R in Life Sciences. Zenodo. https://doi.org/10.5281/zenodo.6637311
+Wandrille Duchemin, & Florence Mehl. (2022, October 12). Course material First steps with R in Life Sciences. Zenodo. [https://doi.org/10.5281/zenodo.7188724](https://doi.org/10.5281/zenodo.7188724)
