@@ -1,0 +1,7 @@
+notes for next course - 10/2022
+
+ - update code for day2
+ - update some tricks
+ 	- merge to dataset using row-names
+
+ - remove stats-related slides
