@@ -5,3 +5,5 @@ notes for next course - 10/2022
  	- merge to dataset using row-names
 
  - remove stats-related slides
+ - remove stats related question from exam
+
