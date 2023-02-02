@@ -1,3 +1,13 @@
+notes for next course - june 2023
+  add this piece of code into the script day1_code.R
+  
+ # change class of these three vectors to factor
+snps$chr <-factor(snps$chr)
+snps$minor <-factor(snps$minor)
+snps$major <-factor(snps$major)
+  
+  It should go after the summary( snps ) commande
+
 notes for next course - 10/2022
 
  - update code for day2
