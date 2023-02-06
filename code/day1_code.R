@@ -222,6 +222,11 @@ rownames( snps )
 str( snps )
 summary( snps )
 
+snps$chr <-factor(snps$chr)
+snps$minor <-factor(snps$minor)
+snps$major <-factor(snps$major)
+
+summary( snps )
 
 snps[2,]
 snps[,"minor"]
