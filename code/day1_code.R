@@ -6,11 +6,9 @@ height_in_cm
 height_in_cm <- c(Mia=180, Paul=167, Ed=199)
 height_in_cm
 
-height_in_cm[1]       # get the first element​
-height_in_cm[c(1,3)]  # get the 1st and 3rd element​
-height_in_cm["Paul"]  # get the element named "Paul"​
-
-
+height_in_cm[1]       # get the first element
+height_in_cm[c(1,3)]  # get the 1st and 3rd element
+height_in_cm["Paul"]  # get the element named "Paul"
 
 ## creating vectors II
 
@@ -19,17 +17,18 @@ numeric(4); character(4); logical(4)
 a = 1:10
 a
 
-a = seq(4,10,2) # from 4 to 10, by steps of 2
-a
+s = seq(4,10,2) # from 4 to 10, by steps of 2
+s
 
-a = rep("WT", 3 )
-a
+c = rep("WT", 3 )
+c
 
 b = rep("KO", 3 )
 b
 
 ## c() stands from concatenate. you can use it to group vectors
-c(a,b)
+c(c,b)
+genotypes <- c(rep("WT",3), rep("KO",3))
 
 ## trick : with [] you can extract element repeatedly
 tplayer <- c("Federer", "Nadal")
@@ -81,27 +80,16 @@ genotype <- factor(c("WT", "WT", "Mut2", "Mut1", "Mut2"),
                    levels=c("WT","Mut1","Mut2"))
 genotype
 
-# Factor III
-b_year <- factor(c(2011, 2012, 2012, 2011, 2010))
-b_year
-
-as.numeric( b_year )
-
-as.character(b_year)
-
-as.numeric( as.character( b_year ) )
-
-
 ## logical operator
 
 ## == -> check equality
 c(1,3,2) == 2
 
 ## ! inverses TRUE and FALSE
-!c(1,3,2) < 2
+! (c(1,3,2) < 2)
 
 ## tables counts occurences
-table(!c(1,3,2) < 2)
+table(!(c(1,3,2) < 2))
 
 ## %in% -> checks presence
 c("Fred", "Marc", "Dan", "Ali") %in% c("Dan", "Geoff", "Ali")
@@ -131,18 +119,18 @@ x[!is.na(x)]  # removes NAs and NaNs from x
 is.na( 33/0 )
 
 
-# Matrix
-
-mat <- matrix(1:12, nrow=3, ncol=4)  # 3x4 matrix
-mat
-
-# cbind():  bind columns together
-mat1 <- cbind(c(1,0), c(0,1), c(1,0)) # 2x3 matrix
-mat1
-
-# rbind():  bind rows together
-mat2 <- rbind(c(1,0), c(0,1), c(1,0))  # 3x2 matrix
-mat2
+# # Matrix
+# 
+# mat <- matrix(1:12, nrow=3, ncol=4)  # 3x4 matrix
+# mat
+# 
+# # cbind():  bind columns together
+# mat1 <- cbind(c(1,0), c(0,1), c(1,0)) # 2x3 matrix
+# mat1
+# 
+# # rbind():  bind rows together
+# mat2 <- rbind(c(1,0), c(0,1), c(1,0))  # 3x2 matrix
+# mat2
 
 # Dataframe
 name <- c("Joyce", "Chaucer", "Homer")
@@ -222,6 +210,7 @@ rownames( snps )
 str( snps )
 summary( snps )
 
+
 snps$chr <-factor(snps$chr)
 snps$minor <-factor(snps$minor)
 snps$major <-factor(snps$major)
@@ -232,6 +221,8 @@ snps[2,]
 snps[,"minor"]
 snps$minor
 snps[ 1:3 , c(1,3) ]
+snps$chr 
+snps$chr[40] 
 
 ## subset:
 subset(snps, chr==1)
@@ -247,12 +238,19 @@ snps_updated <- rbind(snps,
 snps_updated
 
 ## adding columns
-idx <- rep( c("yes",'no') ,  nrow(snps)/2)
-idx
-snps_mod <- cbind(idx,snps)
+tested <- rep( c("yes",'no') ,  nrow(snps)/2)
+tested
+snps_mod <- cbind(snps, tested)
 snps_mod
 
+## reshaping dataframe
+snps_orig <- snps_mod[,-1] 
+head(snps_orig) 
+##equivalent to
+snps_orig <- snps_mod[,2:dim(snps_mod)[2]] 
+head(snps_orig) 
 
+#exporting data
 write.table(snps_updated, file="snps_updated.csv",quote=FALSE, sep=",",row.names=FALSE)
 
 
