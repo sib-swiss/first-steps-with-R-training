@@ -7,6 +7,7 @@ library(MASS)
 # 2) The following command line loads the bacteria data.frame present in the MASS package. Execute it:
 
 data(bacteria)
+?bacteria
 
 # 3) What are the names of the columns of the bacteria data.frame ?
 
