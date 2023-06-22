@@ -1,6 +1,7 @@
 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7612403.svg)](https://doi.org/10.5281/zenodo.7612403)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8070206.svg)](https://doi.org/10.5281/zenodo.8070206)
+
 
 
 # First steps with R in Life Sciences
@@ -35,5 +36,5 @@ solutions codes can be found in the [`solutions/`](solutions/) folder (NB: pract
 
 If you enjoyed this course or found it beneficial and want to refer to it, please cite it as :
 
-Wandrille Duchemin, Diana Marek, Leonore Wigger, Van Du Thuong Tran, & Flavia Marzetta. (2023, February 6). Course material First steps with R in Life Sciences. Zenodo. [https://doi.org/10.5281/zenodo.7612403](https://doi.org/10.5281/zenodo.7612403)
+Diana Marek. (2023, June 22). Course material First steps with R in Life Sciences. Zenodo. https://doi.org/10.5281/zenodo.8070206
 
