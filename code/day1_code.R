@@ -6,24 +6,24 @@ height_in_cm
 height_in_cm <- c(Mia=180, Paul=167, Ed=199)
 height_in_cm
 
-height_in_cm[1]       # get the first element
-height_in_cm[c(1,3)]  # get the 1st and 3rd element
+height_in_cm[3]       # get the first element
+height_in_cm[c(1,3)] # get the 1st and 3rd element
 height_in_cm["Paul"]  # get the element named "Paul"
 
 ## creating vectors II
 
-numeric(4); character(4); logical(4)
+numeric(5); character(4); logical(4)
 
-a = 1:10
+a <- 1:10
 a
 
-s = seq(4,10,2) # from 4 to 10, by steps of 2
+s <-seq(4,10,2) # from 4 to 10, by steps of 2
 s
 
-c = rep("WT", 3 )
+c <- rep("WT", 3 )
 c
 
-b = rep("KO", 3 )
+b <- rep("KO", 3 )
 b
 
 ## c() stands from concatenate. you can use it to group vectors
@@ -36,7 +36,7 @@ tplayer[c(1,1,1,2,2,1)]
 
 
 ## vector manipulation
-a = 1:4
+a <- 1:4
 a*2
 a + c(12,10,12,10)
 
@@ -76,9 +76,11 @@ geno <- as.character(genotype)
 geno
 
 # Factors II
-genotype <- factor(c("WT", "WT", "Mut2", "Mut1", "Mut2"),
-                   levels=c("WT","Mut1","Mut2"))
+genotype <- factor(c("WT", "WT", "Mut2", "Mut1", "Mut2"),levels=c("WT","Mut1","Mut2"))
+
+genotype <- c("WT", "WT", "Mut2", "Mut1", "Mut2")
 genotype
+levels(genotype)
 
 ## logical operator
 
@@ -88,7 +90,7 @@ c(1,3,2) == 2
 ## ! inverses TRUE and FALSE
 ! (c(1,3,2) < 2)
 
-## tables counts occurences
+## table counts occurences
 table(!(c(1,3,2) < 2))
 
 ## %in% -> checks presence
