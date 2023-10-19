@@ -250,6 +250,7 @@ snps_orig <- snps_mod[,-1]
 head(snps_orig) 
 ##equivalent to
 snps_orig <- snps_mod[,2:dim(snps_mod)[2]] 
+snps_orig <- snps_mod[,2:ncol(snps_mod)] 
 head(snps_orig) 
 
 #exporting data
