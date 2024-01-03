@@ -1,6 +1,6 @@
 # 1) Create two vectors, "vector_a" and "vector_b", containing the values from −5 to 5 and from 10 down to 0, respectively.
 vector_a <- -5:5
-vector_b <- seq(10,0) # alternatively: vector_b <- c(10,9,8,7,6,5,4,3,2,1,0)
+vector_b <- seq(0,1,0.1) # alternatively (0:10)*0.1
 
 # 2) Calculate the (elementwise) sum, difference and product between the elements of "vector_a" and "vector_b". 
 vector_a + vector_b #sum
