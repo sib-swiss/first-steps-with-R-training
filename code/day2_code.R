@@ -38,15 +38,41 @@ legend(x="bottomright",
        bg="gray90")
 
 
-## aparte - get data for practice
 
-## iris dataset
+## coloring 
 data(iris)
-head(iris)
 
-## generating random numbers
-rnorm(10)
-rnorm(10 , mean=10 , sd=2)
+plot(iris$Sepal.Length, 
+     iris$Sepal.Width , 
+     col = c('red','green','blue')[ iris$Species ] , 
+     pch=19)
+
+
+## coloring trick 
+iris$Species
+as.numeric(iris$Species)
+c('red','green','blue')[ c(1,1,1,2,2,2,3,3,3) ]
+
+c('red','green','blue')[ iris$Species ]
+
+## lines
+data(airquality)
+plot(airquality$Wind, airquality$Ozone, pch=20,
+     xlab="Wind (mph)",ylab="Ozone (ppb)")
+
+## horizontal and vertical lines
+abline(h=60, col="red", lty="dashed")
+abline(v=seq(3,21,3), col="grey", lty="dotdash")
+
+## tendency line
+abline(lm(airquality$Ozone ~ airquality$Wind),
+       col=2, lwd=2)
+
+legend("topright", legend= c("measures","fitted line"),
+       pch= c(20, NA), lty = c(0, 1), lwd=c(NA, 2),
+       col = c(1, 2), bg = "gray90")
+
+
 
 ## histogram
 x <- rnorm(10000)
@@ -92,28 +118,11 @@ points(thickness ~ status, data=Melanoma,
         col="blue", pch=19) #adds the actual data points to the plot
 
 
-## lines
-data(airquality)
-plot(airquality$Wind, airquality$Ozone, pch=20,
-     xlab="Wind (mph)",ylab="Ozone (ppb)")
-
-## horizontal and vertical lines
-abline(h=60, col="red", lty="dashed")
-abline(v=seq(3,21,3), col="grey", lty="dotdash")
-
-## tendency line
-abline(lm(airquality$Ozone ~ airquality$Wind),
-       col=2, lwd=2)
-
-legend("topright", legend= c("measures","fitted line"),
-       pch= c(20, NA), lty = c(0, 1), lwd=c(NA, 2),
-       col = c(1, 2), bg = "gray90")
-
 
 ## pairplot
 data(iris) #contains 4 measurements for 150 flowers from 3   species of iris (Iris setosa, versicolor and virginica)​
 pairs(iris[,1:4], main="Edgar Anderson's Iris Data", 
-        pch=21, bg=c("red", "green3", "blue")[iris$Species]) 
+        pch=19, col=c("red", "green3", "blue")[iris$Species]) 
 
 iris$Species
 as.numeric(iris$Species)
@@ -122,57 +131,19 @@ c('red','green','blue')[ c(1,1,1,2,2,2,3,3,3) ]
 
 c('red','green','blue')[iris$Species]
 
-## barplot
-
-course_data <- c(25, 35, 50, 100)
-barplot(course_data, main="Number of requests for R courses", 
-        names.arg=c("2011", "2012","2013", "2014"), 
-        col=c("yellow", "orange","red", "blue"))
 
 
-## more complex barplot
-df <- data.frame(year = c("2011","2012","2013","2014", 
-                          "2011","2012","2013","2014", 
-                          "2011","2012","2013","2014", 
-                          "2011","2012","2013","2014"),
-                 city =  c("A","A","A","A", "B","B","B","B", 
-                           "C","C","C","C", "D","D","D","D"),
-                 nb_requests_courses = c(30,36,50,98, 26,35,54,101,
-                                         28,38,51,105, 29,40,55,125))
+## par
 
-# Check what is inside
-df
+par(mfrow=c(1,2))
+plot(-90:90 , (-90:90)**2 )
+plot(-90:90 , (-90:90)**3 )
 
-mean_nb  <- tapply(df$nb_requests_courses, df$year, mean)
-sd_nb    <- tapply(df$nb_requests_courses, df$year, sd)
-n_values <- tapply(df$nb_requests_courses, df$year, length)
-mean_nb
-sd_nb
-n_values
-
-
-mids <- barplot(mean_nb, 
-                xlab="year",ylab="Number of requests for courses", 
-                ylim=c(0,120),
-                col=c("yellow", "orange","red", "blue"),
-                cex=1.5, cex.axis=1.5, cex.main=1.5, cex.names=1.5,
-                main= "Number of requests for R")
-mids
-
-arrows(mids, mean_nb-sd_nb, # coordinates of lower point
-       mids, mean_nb+sd_nb, # coordinates of upper point
-       code=3,      # type of arrow: "head at both ends"
-       angle=90,    # angle between shaft and head of arrow
-       length=0.1,  # length of edges of arrow head
-       lwd=2)       # line width
-
-
-# Add text at the midpoints and at height 5 on the y-axis: number of observations​
-text(x=mids, y=5, paste("n =",n_values), cex=2)
-
-
-
-
+par(mfrow=c(2,2))
+plot(-90:90 , (-90:90)**1 )
+plot(-90:90 , (-90:90)**2 )
+plot(-90:90 , (-90:90)**3 )
+plot(-90:90 , (-90:90)**4 )
 
 plot( rnorm(10) , rnorm(10) )
 par(col="red", pch=15)
@@ -205,39 +176,56 @@ dev.off()
 
 ### stats ###
 
-data(sleep)
-head(sleep)
+data(iris)
+# we limit the data to 2 species
+iris_f = iris[ iris$Species %in% c('versicolor','virginica') , ]
+iris_f$Species = factor(iris_f$Species)
 
-summary(sleep)
+tapply( iris_f$Petal.Length ,iris_f$Species , mean )
+
+plen_versicolor = iris_f$Petal.Length[iris_f$Species=='versicolor']
+plen_virginica  = iris_f$Petal.Length[iris_f$Species=='virginica']
+
 
 par(mfrow=c(2,2))
-hist(sleep$extra[sleep$group==1],
-      freq=FALSE, xlab="Drug 1",
-      main=" Extra sleep on drug 1")
-qqnorm(sleep$extra[sleep$group==1])
-qqline(sleep$extra[sleep$group==1])
+hist(plen_versicolor,
+     xlab="versicolor",
+     main="petal length - versicolor")
+qqnorm(plen_versicolor)
+qqline(plen_versicolor)
 
-hist(sleep$extra[sleep$group==2],
-      freq=FALSE, xlab="Drug 2",
-      main=" Extra sleep on drug 2")
-qqnorm(sleep$extra[sleep$group==2])
-qqline(sleep$extra[sleep$group==2])
+hist(plen_virginica,
+     xlab="virginica",
+     main="petal length - virginica")
+qqnorm(plen_virginica)
+qqline(plen_virginica)
 
 dev.off()
 
-boxplot(extra ~ group, data=sleep, col=c("orange", "pink"), ylab="Extra sleep", xlab="Drug received") 
-points(extra ~ group, data = sleep, col="black",pch = 19)
-
-t.test(sleep$extra[sleep$group==1],
-       sleep$extra[sleep$group==2])
-
-t.test(extra ~ group, data=sleep) #equivalent to the above 
+shapiro.test( plen_versicolor )
+shapiro.test( plen_virginica )
 
 
-test_res = t.test(sleep$extra[sleep$group==1],
-                  sleep$extra[sleep$group==2])
+boxplot(Petal.Length ~ Species, data=iris_f, col=c("cornflowerblue", "pink"), 
+        ylab="petal length", xlab="species") 
+points( Petal.Length ~ Species, data=iris_f, col="black",pch = 19)
+
+t.test(plen_versicolor,
+       plen_virginica)
+
+t.test(Petal.Length ~ Species, data=iris_f) #equivalent to the above 
+
+
+test_res = t.test(Petal.Length ~ Species, 
+                  data=iris_f)
 names(test_res)
 test_res[['p.value']]
+
+
+## paired t-test
+
+data(sleep)
+head(sleep)
 
 interaction.plot(response=sleep$extra, x.factor=sleep$group, 
                  trace.factor=sleep$ID, legend=FALSE, type="b", lty=1, pch=16, 
@@ -297,15 +285,20 @@ class_data <- read.csv("course_datasets/class.csv")
 class_data$Gender = as.factor(class_data$Gender)
 #dataset* of 19 students' measurements
 summary(class_data)
-pairs(class_data)
+pairs(class_data[2:4] , col = class_data$Gender, pch=19 )
 
+# create model
 model_height_age <- lm(Height~Age, data=class_data)
 model_height_age
 
+plot(Height~Age, data=class_data)
+abline(model_height_age , col='red')
+
+residuals(model_height_age)
+
 ## check model assumptions
-par(mfrow=c(1,2))
-plot(model_height_age, which=1)
-plot(model_height_age, which=2)
+par(mfrow=c(2,2))
+plot(model_height_age)
 
 dev.off()
 ## plot model
@@ -322,3 +315,20 @@ abline(a=0,b=1,lty=2)
 
 summary( model_height_age )
 
+
+## model with 2 parameters
+
+
+# create model
+model2 <- lm(Height~Age+Gender, data=class_data)
+
+par(mfrow=c(2,2))
+plot(model2)
+dev.off()
+summary(model2)
+
+plot( Height~Age, col=c('turquoise','purple')[Gender], pch=19, data=class_data  )
+C = coef( model2 )
+abline(a=C[1],b=C[2] , col='turquoise',lwd=2)
+abline(a=C[1]+C[3],b=C[2] , col='purple',lwd=2)
+legend('bottomright',c('female','male'),pch=19,lwd=2,col=c('turquoise','purple'))

@@ -1,31 +1,95 @@
-
 # First Steps in R, Practice 10
 
-# 1) Load the package MASS using library(). (You may need to install it first).
-# Load the dataset Pima.tr using data(). Use ? to get an idea which variables it contains.
+# Come back to the mice data-set stored in the "mice_data" data frame.
 
-library(MASS)
-data(Pima.tr)
-?Pima.tr
+mice_data <- read.table( "course_datasets/mice_data.csv" , header=T , sep=",",
+                         colClasses=c("factor", "factor", "numeric")) # define classes for columns  )
 
-
-#2) Hypothesis: Blood glucose level (glu) is associated with diastolic blood pressure (bp).
-#   Run a linear model to test the hypothesis.
-
-model_fit <- lm(bp~glu, data=Pima.tr)
-summary(model_fit)
+mice_data$genotype <- factor(mice_data$genotype, levels=c("WT", "KO"))
 
 
-# the linear association between glucose and blood pressure is significant at the 0.05 alpha level
-# (p = 0.000115)
+# 1)  Considering WT mice weight and KO mice weight separately, check the assumption of normality graphically.
 
-# 3) Visualize the fit with a scatter plot and a trend line.
+
+KO_weights = mice_data$weight[ mice_data$genotype=="KO"]
+WT_weights = mice_data$weight[ mice_data$genotype=="WT"]
+
+par(mfrow=c(2,2))
+
+hist(KO_weights, freq=FALSE,
+     xlab="KO", main="weights of KO mice")
+qqnorm(KO_weights)
+qqline(KO_weights)
+
+hist(WT_weights, freq=FALSE,
+     xlab="WT", main="weights of WT mice")
+qqnorm(WT_weights)
+qqline(WT_weights)
+
+par(mfrow=c(1,1)) # removes setting in par
+
+
+# KO mice: normality assumption seems ok
+
+# WT mice:
+# histogram - suggests no normality (but small sample size for this)
+# QQ Plot - quite ok
+
+
+
+# Welch's t-test is fairly robust if the deviation from normality is not extreme,
+# so let's continue
+
+# 2) Make an appropriate plot to visualize the mouse weights grouped by genotype.
+
+boxplot(weight ~ genotype, data=mice_data , 
+        col=c('orange','blue'),
+        main="mice weight by genotype")
+
+# 3) Perform a test to see whether the mouse weight is different between the two genotypes.
+t.test(KO_weights, WT_weights) #NB : here the data is not paired : WT and KO mice are different individuals
+# we do not reject HO : the is no significant difference between WT and KO mice mean weights for any reasonable significance level
+# (p=0.8514)
+
+
+# Alternative: Use non-parametric test
+# Does not assume normally distributed data
+# However, assumes the same standard deviation in all groups (while Welch's t test does not)
+# Therefore, probably not better
+
+wilcox.test(weight ~ genotype, data=mice_data)
+# no significative difference between the mean weights of WT and KO mice
+
+
+
+
+# 4) Repeat step 1 to 3 for the diet variable.
+
+HFD_weights = mice_data$weight[mice_data$diet=="HFD"]
+CHOW_weights = mice_data$weight[mice_data$diet=="CHOW"]
+
+par(mfrow=c(2,2))
+
+hist(HFD_weights, freq=FALSE,
+     xlab="HFD", main="weights of HFD mice")
+qqnorm(HFD_weights)
+qqline(HFD_weights)
+
+hist(CHOW_weights, freq=FALSE,
+     xlab="CHOW", main="weights of CHOW mice")
+qqnorm(CHOW_weights)
+qqline(CHOW_weights)
+
 par(mfrow=c(1,1))
-plot(Pima.tr$glu, Pima.tr$bp,  pch=20, xlab="blood glucose", ylab="blood pressure")
-abline(model_fit, col='red' , lwd=3)
+# all seems OK
 
-# 4) Check the assumption of normality of the residuals graphically.
-par(mfrow=c(2,1))
-plot(model_fit, which=1)
-plot(model_fit, which=2)
-# Looks quite ok
+boxplot(weight ~ diet, data=mice_data, col=c('orange','blue'), main="Mouse Weight by Diet")
+
+t.test(HFD_weights, CHOW_weights ) #NB : here the data is not paired : HFD and CHOW mice are different individuals
+# we can reject HO : there is a significant difference between HFD and CHOW mice mean weights at significance level p=0.05
+# (CHOW weight are on average lower)
+
+
+# Out of curiosity, let's see what result we would get with the non-parametric Whitney Mann U test (implemented in wilcox.test)
+wilcox.test(weight ~ diet, data=mice_data)
+

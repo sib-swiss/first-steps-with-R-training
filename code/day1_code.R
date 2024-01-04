@@ -230,15 +230,19 @@ data(sleep)
 head(sleep)
 tapply(X=sleep$extra, INDEX=sleep$group, FUN=mean)
 
+## table
+table(snps$chr)
+table(snps$minor, snps$major)
+
 ##  adding rows
 snps_updated <- rbind(snps,
                       data.frame(chr=22, pos=1723369, minor="A", major="T"))
 snps_updated
 
 ## adding columns
-tested <- rep( c("yes",'no') ,  nrow(snps)/2)
-tested
-snps_mod <- cbind(snps, tested)
+majorGC <- snps$major %in% c("G","C")
+majorGC
+snps_mod <- cbind(snps, majorGC)
 snps_mod
 
 ## reshaping dataframe
