@@ -1,5 +1,6 @@
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10039453.svg)](https://doi.org/10.5281/zenodo.10039453)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6091478.svg)](https://doi.org/10.5281/zenodo.6091478)
+
 
 
 # First steps with R in Life Sciences
@@ -34,5 +35,4 @@ solutions codes can be found in the [`solutions/`](solutions/) folder (NB: pract
 
 If you enjoyed this course or found it beneficial and want to refer to it, please cite it as :
 
-andrille Duchemin, & Burdet, F. (2023, October 25). Course material First steps with R in Life Sciences. Zenodo. https://doi.org/10.5281/zenodo.10039453
-
+Duchemin, W., Di Cola, V., Mehl, F., Marzetta, F., Marek, D., & Tran, T. V. D. (2024, February 15). First steps with R in Life Sciences - course material. Zenodo. https://doi.org/10.5281/zenodo.6091478
