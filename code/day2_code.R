@@ -42,18 +42,26 @@ legend(x="bottomright",
 ## coloring 
 data(iris)
 
+colormap = c( "setosa" = "red" , 
+              'versicolor' = 'green' , 
+              'virginica' = 'blue' )
+colormap
+
 plot(iris$Sepal.Length, 
      iris$Sepal.Width , 
-     col = c('red','green','blue')[ iris$Species ] , 
+     col = colormap[ iris$Species ] , 
      pch=19)
 
 
-## coloring trick 
-iris$Species
-as.numeric(iris$Species)
-c('red','green','blue')[ c(1,1,1,2,2,2,3,3,3) ]
+## coloring trick
+colormap = c( "setosa" = "red" , 
+              'versicolor' = 'green' , 
+              'virginica' = 'blue' )
+colormap['setosa']
 
-c('red','green','blue')[ iris$Species ]
+colormap[c('setosa','virginica','setosa','setosa')]
+
+colormap[iris$Species]
 
 ## lines
 data(airquality)
@@ -121,15 +129,12 @@ points(thickness ~ status, data=Melanoma,
 
 ## pairplot
 data(iris) #contains 4 measurements for 150 flowers from 3   species of iris (Iris setosa, versicolor and virginica)​
+colormap = c( "setosa" = "red" , 
+              'versicolor' = 'green' , 
+              'virginica' = 'blue' )
+
 pairs(iris[,1:4], main="Edgar Anderson's Iris Data", 
-        pch=19, col=c("red", "green3", "blue")[iris$Species]) 
-
-iris$Species
-as.numeric(iris$Species)
-
-c('red','green','blue')[ c(1,1,1,2,2,2,3,3,3) ]
-
-c('red','green','blue')[iris$Species]
+        pch=19, col=colormap[iris$Species]) 
 
 
 

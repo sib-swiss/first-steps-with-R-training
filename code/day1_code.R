@@ -1,12 +1,13 @@
 ## creating vectors I
 
+## c() stands from concatenate. you can use it to group vectors
 height_in_cm <- c(180, 167, 199)
 height_in_cm
 
 height_in_cm <- c(Mia=180, Paul=167, Ed=199)
 height_in_cm
 
-height_in_cm[3]       # get the first element
+height_in_cm[1]       # get the first element
 height_in_cm["Paul"]  # get the element named "Paul"
 
 height_in_cm[c(1,3)]  # get the 1st and 3rd element
@@ -23,13 +24,8 @@ s
 genotypes <- rep( c('WT','KO') , 3 )​
 genotypes
 
-## c() stands from concatenate. you can use it to group vectors
+
 c(a,s)
-
-
-## trick : with [] you can extract element repeatedly
-tplayer <- c("Federer", "Nadal")
-tplayer[c(1,1,1,2,2,1)]
 
 
 ## vector manipulation
@@ -81,6 +77,11 @@ table(!(c(1,3,2) < 2))
 
 ## %in% -> checks presence
 c("Fred", "Marc", "Dan", "Ali") %in% c("Dan", "Geoff", "Ali")
+
+## using logical vectors to subset
+a <- 1:4
+a[ c(FALSE,FALSE,TRUE,TRUE) ]
+a[ a>2 ]
 
 
 ## missing values
@@ -211,6 +212,7 @@ snps$chr <-factor(snps$chr)
 snps$minor <-factor(snps$minor)
 snps$major <-factor(snps$major)
 
+str( snps )
 summary( snps )
 
 snps[2,]
@@ -219,6 +221,11 @@ snps$minor
 snps[ 1:3 , c(1,3) ]
 snps$chr 
 snps$chr[40] 
+
+
+table( snps$chr  )
+table( snps$minor , snps$major  )
+table( snps$minor , snps$major  , dnn = c("minor","major"))
 
 ## subset:
 subset(snps, chr==1)
@@ -244,6 +251,9 @@ majorGC <- snps$major %in% c("G","C")
 majorGC
 snps_mod <- cbind(snps, majorGC)
 snps_mod
+
+snps$majorGC <- snps$major %in% c("G","C")
+
 
 ## reshaping dataframe
 snps_orig <- snps_mod[,-1] 
