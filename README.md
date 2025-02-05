@@ -1,5 +1,5 @@
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6091478.svg)](https://doi.org/10.5281/zenodo.6091478)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14808144.svg)](https://doi.org/10.5281/zenodo.14808144)
 
 
 
@@ -35,4 +35,4 @@ solutions codes can be found in the [`solutions/`](solutions/) folder (NB: pract
 
 If you enjoyed this course or found it beneficial and want to refer to it, please cite it as :
 
-Duchemin, W., Di Cola, V., Mehl, F., Marzetta, F., Marek, D., & Tran, T. V. D. (2024, February 15). First steps with R in Life Sciences - course material. Zenodo. https://doi.org/10.5281/zenodo.6091478
+Duchemin, W. & Burdet, F. (2025, February 5). First steps with R in Life Sciences - SIB course material. Zenodo. [https://doi.org/10.5281/zenodo.14808144](https://doi.org/10.5281/zenodo.14808144)
