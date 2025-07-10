@@ -36,7 +36,7 @@ solutions codes can be found in the [`solutions/`](solutions/) folder (NB: pract
 In order to help you throughout the practicals, we encourage you to consult the following cheatsheetL
 
  * [keyboards cheatsheet](https://sib-swiss.github.io/RNAseq-introduction-training/assets/pdf/keyboards_cheatsheet.pdf) to remember where the special characters are (`[]{}&^~\|/`...)
- * [base R cheatsheet](assets/pdf/base-r-cheat-sheet.pdf) a nice 2-pages cheatsheet with most of R basics  
+ * [base R cheatsheet](assets/pdf/base-r-cheatsheet.pdf) a nice 2-pages cheatsheet with most of R basics  
 
 
 
