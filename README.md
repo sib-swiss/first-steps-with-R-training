@@ -31,6 +31,15 @@ solutions codes can be found in the [`solutions/`](solutions/) folder (NB: pract
  * [Day 2 - morning slides](slides/First-steps-with-R_day2_morning.pdf) discusses visualization in R and how to create and customize simple, yet efficient, graphics from your data
  * [Day 2 - afternoon slides](slides/First-steps-with-R_day2_afternoon.pdf) introduces how to perform statistical analysis in R (be warned: this is not a statistics course and only aims to show how the language deals with it)
 
+## Cheatsheets
+
+In order to help you throughout the practicals, we encourage you to consult the following cheatsheetL
+
+ * [keyboards cheatsheet](https://sib-swiss.github.io/RNAseq-introduction-training/assets/pdf/keyboards_cheatsheet.pdf) to remember where the special characters are (`[]{}&^~\|/`...)
+ * [base R cheatsheet](assets/pdf/base-r-cheat-sheet.pdf) a nice 2-pages cheatsheet with most of R basics  
+
+
+
 ## Citation
 
 If you enjoyed this course or found it beneficial and want to refer to it, please cite it as :
