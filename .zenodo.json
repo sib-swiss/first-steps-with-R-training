@@ -1,5 +1,7 @@
 {
+  "upload_type": "lesson",
   "title": "Course material First steps with R in Life Sciences",
+  "license": "cc-by-4.0",
   "keywords": [
     "programming",
     "R",
@@ -8,16 +10,9 @@
   ],
   "creators": [
     {
-      "name": "Diana Marek",
-      "affiliation": "SIB Swiss Institute of Bioinformatics"
-    },
-    {
-      "name": "Leonore Wigger",
-      "affiliation": "SIB Swiss Institute of Bioinformatics"
-    },
-    {
-      "name": "Wandrille Duchemin",
-      "affiliation": "SIB Swiss Institute of Bioinformatics"
+      "name": "Duchemin, Wandrille",
+      "affiliation": "SIB Swiss Institute of Bioinformatics",
+      "orcid": "0000-0001-8854-7235"
     }   
   ]
 }
