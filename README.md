@@ -1,6 +1,5 @@
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14808144.svg)](https://doi.org/10.5281/zenodo.14808144)
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17590793.svg)](https://doi.org/10.5281/zenodo.17590793)
 
 
 # First steps with R in Life Sciences
@@ -44,4 +43,4 @@ In order to help you throughout the practicals, we encourage you to consult the 
 
 If you enjoyed this course or found it beneficial and want to refer to it, please cite it as :
 
-Duchemin, W. & Burdet, F. (2025, February 5). First steps with R in Life Sciences - SIB course material. Zenodo. [https://doi.org/10.5281/zenodo.14808144](https://doi.org/10.5281/zenodo.14808144)
+Duchemin, W., & Burdet, F. (2025, November 12). Course material First steps with R in Life Sciences. Zenodo. [https://doi.org/10.5281/zenodo.17590793](https://doi.org/10.5281/zenodo.17590793)
