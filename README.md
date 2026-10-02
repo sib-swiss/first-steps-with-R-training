@@ -37,7 +37,26 @@ In order to help you throughout the practicals, we encourage you to consult the 
  * [keyboards cheatsheet](https://sib-swiss.github.io/RNAseq-introduction-training/assets/pdf/keyboards_cheatsheet.pdf) to remember where the special characters are (`[]{}&^~\|/`...)
  * [base R cheatsheet](assets/pdf/base-r-cheatsheet.pdf) a nice 2-pages cheatsheet with most of R basics  
 
+## Extra data sources
 
+The extra datasets in this repository are taken from published work and are
+reused under the [Creative Commons Attribution 4.0 International
+license (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+They were modified for teaching purposes (see below).
+
+**Metabolomics dataset** (`Bosnjakovic2025_metabolites.xlsx`)
+Bosnjakovic A, Eichmann T, Stern A, Rasmussen MA, Lovric M, Zegura B (2025).
+*Metabolomic fingerprints of PAH exposure – identifying toxicological
+biomarkers in dynamically cultured 3D cell spheroids.* bioRxiv (preprint).
+https://doi.org/10.1101/2025.07.10.663939
+Changes: <Bosnjakovic2025_metabolites.xlsx sheets exported to tab-delimited .txt files>
+
+**Cell line dataset** (`Ujiie2025_Supplementary Table S3.xlsx`)
+Ujiie H, Sakyo T, Oya K, Sugawara Y, Ota M, Yonezawa H, Nishiya N (2025).
+*Machine Learning–Driven Integration of Cancer Cell Phenotypes Predicts
+Cisplatin Sensitivity.* Cancer Medicine.
+https://doi.org/10.1002/cam4.71373 (Supplementary Table S3)
+Changes: none
 
 ## Citation
 
