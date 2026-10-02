@@ -1,0 +1,146 @@
+---
+title: "Four_figures_panels"
+author: "Josefina Lascano Maillard"
+date: "2026-09-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Diet effect on WT vs KO mice
+
+In this analysis, we want to compare the weigths in KO vs WT mice
+```{r load mice data}
+getwd()
+mice_data <- read.table("course_datasets/mice_data_mod.csv", header=TRUE, sep=",") # define classes for columns
+mice_data$genotype <- factor(mice_data$genotype, levels=c("WT", "KO"))
+mice_data$diet <- factor(mice_data$diet, levels=c("CHOW", "HFD"))
+
+
+
+```
+
+## Realtionship between respiratory rate, weight, genotype and diet
+
+We visualize the relationship between variables of interest using scatter and box plots.
+
+```{r mice variables, echo=FALSE, fig.width=8, fig.height=6, fig.align="center"}
+# 1) Make a multi-panel figure with the four graphics on one page, exporting the figure to a 
+# we want to make 4 plots on the same panel -> 2 rows and 2 columns
+
+par(mfrow=c(2,2)) # arrange subsequent plots in 2 rows x 2 columns
+
+# Plot 1
+plot(mice_data$weight,mice_data$respiratoryRate, 
+     pch=19,
+     main="Respiratory Rate vs Weight in Mice",
+     xlab="Weight [g]", ylab="Respiratory Rate [bpm]",
+     col=c("orange", "blue")[mice_data$genotype]
+)
+
+legend("bottomright",
+       legend=levels(mice_data$genotype),
+       col=c("orange","blue"),
+       pch=19)
+
+abline(lm(mice_data$respiratoryRate ~ mice_data$weight),
+       col="black", lwd=1.5)
+
+# Plot 2
+boxplot(weight ~ genotype, data= mice_data,
+        col=c("orange", "blue"),
+        main="Mouse Weight by Genotype"
+)
+points(weight ~ genotype, data= mice_data)
+
+
+# Plot 3
+plot(mice_data$weight,mice_data$respiratoryRate, 
+     pch=19,
+     main="Respiratory Rate vs Weight in Mice",
+     xlab="Weight [g]", ylab="Respiratory Rate [bpm]",
+     col=c("darkred", "goldenrod")[mice_data$diet]
+)
+
+legend("bottomright",
+       legend=levels(mice_data$diet),
+       col=c("darkred","goldenrod"),
+       pch=19)
+
+abline(lm(mice_data$respiratoryRate ~ mice_data$weight),
+       col="black", lwd=1.5)
+
+# Plot4
+boxplot(weight ~ diet, data= mice_data,
+        col=c("darkred", "goldenrod"),
+        main="Mouse Weight by Diet"
+)
+points(weight ~ diet, data= mice_data)
+
+
+```
+
+
+```{r create pdf, echo=FALSE, message=FALSE}
+# 1) Make a multi-panel figure with the four graphics on one page, exporting the figure to a pdf file.
+#    Set width and height arguments in the call to png() to make it look nice.
+
+pdf("mice_data_plots_by_genotype.pdf", width=7, height=7, paper="a4") 
+
+# we want to make 4 plots on the same panel -> 2 rows and 2 columns
+par(mfrow=c(2,2))
+
+# Plot 1
+plot(mice_data$weight,mice_data$respiratoryRate, 
+     pch=19,
+     main="Respiratory Rate vs Weight in Mice",
+     xlab="Weight [g]", ylab="Respiratory Rate [bpm]",
+     col=c("orange", "blue")[mice_data$genotype]
+)
+
+legend("bottomright",
+       legend=levels(mice_data$genotype),
+       col=c("orange","blue"),
+       pch=19)
+
+abline(lm(mice_data$respiratoryRate ~ mice_data$weight),
+       col="black", lwd=1.5)
+
+# Plot 2
+boxplot(weight ~ genotype, data= mice_data,
+        col=c("orange", "blue"),
+        main="Mouse Weight by Genotype"
+)
+points(weight ~ genotype, data= mice_data)
+
+
+# Plot 3
+plot(mice_data$weight,mice_data$respiratoryRate, 
+     pch=19,
+     main="Respiratory Rate vs Weight in Mice",
+     xlab="Weight [g]", ylab="Respiratory Rate [bpm]",
+     col=c("darkred", "goldenrod")[mice_data$diet]
+)
+
+legend("bottomright",
+       legend=levels(mice_data$diet),
+       col=c("darkred","goldenrod"),
+       pch=19)
+
+abline(lm(mice_data$respiratoryRate ~ mice_data$weight),
+       col="black", lwd=1.5)
+
+# Plot4
+boxplot(weight ~ diet, data= mice_data,
+        col=c("darkred", "goldenrod"),
+        main="Mouse Weight by Diet"
+)
+points(weight ~ diet, data= mice_data)
+dev.off()
+
+#invisible(dev.off())
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
