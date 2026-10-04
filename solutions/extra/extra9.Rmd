@@ -1,0 +1,48 @@
+---
+title: "Four_figures_panels_extra"
+author: "Josefina Lascano Maillard"
+date: "2026-09-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Diet effect on WT vs KO mice
+
+In this analysis, we want to compare the weigths in KO vs WT mice
+```{r load mice data}
+getwd()
+mice_data <- read.table("course_datasets/mice_data_mod.csv", header=TRUE, sep=",") # define classes for columns
+mice_data$genotype <- factor(mice_data$genotype, levels=c("WT", "KO"))
+mice_data$diet <- factor(mice_data$diet, levels=c("CHOW", "HFD"))
+
+
+
+```
+
+## Realtionship between respiratory rate, weight, genotype and diet
+
+We visualize the relationship between variables of interest using scatter and box plots.
+
+```{r mice variables, echo=FALSE, fig.width=8, fig.height=6, fig.align="center"}
+# 1) Make a multi-panel figure with the four graphics on one page, exporting the figure to a 
+# we want to make 4 plots on the same panel -> 2 rows and 2 columns
+
+par(bg="lightblue") # arrange subsequent plots in 2 rows x 2 columns
+
+# Plot 1
+plot(mice_data$weight,mice_data$respiratoryRate, 
+     pch=19,
+     main="Respiratory Rate vs Weight in Mice",
+     xlab="Weight [g]", ylab="Respiratory Rate [bpm]",
+     col=c("orange", "blue")[mice_data$genotype],
+     col.main = "darkblue",              # title colour
+     col.lab  = "darkred",               # axis label colour
+     font.lab = 2,                       # axis label thickness: 1 = normal, 2 = bold
+     cex.lab  = 1.3)                     # axis label size (1 = default)
+
+
+
+```

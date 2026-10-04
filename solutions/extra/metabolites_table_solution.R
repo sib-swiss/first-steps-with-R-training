@@ -13,11 +13,11 @@ file <- "Bosnjakovic2025_metabolites_pos.txt"
 #   header = FALSE  -> do NOT use the first row as column names
 #   colClasses = "character" -> read everything as text
 meta <- read.delim(file, header = FALSE, nrows = 3,
-                   colClasses = "character", fileEncoding = "UTF-8")
+                   colClasses = "character", fileEncoding = "latin1")
 
 # Read the data
 #   skip = 3        -> ignore the first 3 rows, read everything after them
-abund <- read.delim(file, header = FALSE, skip = 3, fileEncoding = "UTF-8")
+abund <- read.delim(file, header = FALSE, skip = 3, fileEncoding = "latin1")
 
 meta   # look at the header rows
 str(abund)   # check the data: abundances should be numbers (num / int)
@@ -101,6 +101,12 @@ moi <- read_excel(file, sheet = "MOI_identification")
 # Find which columns contain text (TRUE) and which don't (FALSE)
 text_cols <- sapply(moi, is.character)
 
+# example of what can be problematic:
+table(moi$Concentration)
+# How many cells still contain a non-breaking space?
+sum(grepl("\u00a0", moi$Concentration))   # before: 22   after: 0
+
+
 # Apply the same cleaning to every text column
 #   lapply() -> repeat the function on each selected column
 moi[text_cols] <- lapply(moi[text_cols], function(x) {
@@ -109,6 +115,5 @@ moi[text_cols] <- lapply(moi[text_cols], function(x) {
   trimws(x)                     # remove spaces at the start and end of the text
 })
 
-moi   # check the result
-
-
+# Check: no non-breaking spaces left (should be 0)
+sum(grepl("\u00a0", moi$Concentration))

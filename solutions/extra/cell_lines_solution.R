@@ -5,9 +5,9 @@
 library(readxl)
 
 # 1. Read the table, skipping the title row
-cell_lines <- read_excel("Ujiie2025_Supplementary Table S3.xlsx",
+cell_lines <- read_excel("course_datasets/Ujiie2025_Supplementary Table S3.xlsx",
                          sheet = "Table S3", skip = 1)
-
+names(cell_lines)
 # 2. Clean the column names (replaces clean_names())
 names(cell_lines) <- gsub("([a-z0-9])([A-Z])", "\\1_\\2", names(cell_lines))  # camelCase -> camel_Case
 names(cell_lines) <- tolower(names(cell_lines))                               # all lowercase
@@ -23,7 +23,7 @@ cell_lines$status <- factor(cell_lines$status, levels = c("Included", "Excluded"
 
 # 5. Count the NAs in each column
 colSums(is.na(cell_lines))
-
+table(is.na(cell_lines$prism_ic50), cell_lines$status)
 # NAs in prism_ic50 are structural : some of the "Excluded" miss PRISM values. 
 # But why not all? What was the reason to be ecluded?
 # Sometimes we cannot rely on is.na, we need to know the other metadata
