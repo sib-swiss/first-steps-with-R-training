@@ -1,0 +1,137 @@
+---
+title: "Iris dataset exploration"
+author: "Fred"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  pdf_document:
+    toc: true
+    toc_float: true
+    code_folding: show
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE, results='hide'}
+# Global chunk options: every figure is written to figures/ in PNG and PDF.
+# File names follow the pattern <fig.path><chunk-label>-<n>.<ext>
+knitr::opts_chunk$set(
+  echo       = TRUE,
+  message    = FALSE,
+  warning    = FALSE,
+  fig.path   = "figures/",
+  dev        = c("png", "pdf"),
+  dpi        = 300,
+  fig.width  = 7,
+  fig.height = 5,
+  fig.align  = "center"
+)
+```
+
+## Load packages and data
+ I can write all the text I want 
+ 
+```{r}
+library(ggplot2)
+library(dplyr)
+
+data(iris)
+str(iris)
+head(iris)
+```
+
+## Summary statistics
+
+```{r summary-stats}
+# Split the data by species
+setosa     <- iris[iris$Species == "setosa", ]
+versicolor <- iris[iris$Species == "versicolor", ]
+virginica  <- iris[iris$Species == "virginica", ]
+
+# Build the summary table, one column per statistic
+stats <- data.frame(
+  Species      = c("setosa", "versicolor", "virginica"),
+  n            = c(nrow(setosa), nrow(versicolor), nrow(virginica)),
+  mean_sepal_L = c(mean(setosa$Sepal.Length), mean(versicolor$Sepal.Length), mean(virginica$Sepal.Length)),
+  sd_sepal_L   = c(sd(setosa$Sepal.Length),   sd(versicolor$Sepal.Length),   sd(virginica$Sepal.Length)),
+  mean_petal_L = c(mean(setosa$Petal.Length), mean(versicolor$Petal.Length), mean(virginica$Petal.Length)),
+  sd_petal_L   = c(sd(setosa$Petal.Length),   sd(versicolor$Petal.Length),   sd(virginica$Petal.Length))
+)
+
+# Display the table
+knitr::kable(stats, digits = 2)
+```
+
+## Figures
+
+### Sepal length vs petal length
+
+#### Base R
+
+```{r scatter-base, fig.width=9, fig.height=3.5}
+# Same axis limits for the three panels (like facet_wrap does)
+x_limits <- range(iris$Sepal.Length)
+y_limits <- range(iris$Petal.Length)
+
+# Split the plotting window into 1 row and 3 columns
+par(mfrow = c(1, 3))
+
+plot(setosa$Sepal.Length, setosa$Petal.Length,
+     xlim = x_limits, ylim = y_limits,
+     xlab = "Sepal length (cm)", ylab = "Petal length (cm)",
+     main = "setosa", pch = 16)
+
+plot(versicolor$Sepal.Length, versicolor$Petal.Length,
+     xlim = x_limits, ylim = y_limits,
+     xlab = "Sepal length (cm)", ylab = "Petal length (cm)",
+     main = "versicolor", pch = 16)
+
+plot(virginica$Sepal.Length, virginica$Petal.Length,
+     xlim = x_limits, ylim = y_limits,
+     xlab = "Sepal length (cm)", ylab = "Petal length (cm)",
+     main = "virginica", pch = 16)
+
+# Reset the plotting window to a single panel
+par(mfrow = c(1, 1))
+```
+
+#### ggplot2
+
+```{r scatter-ggplot, fig.width=9, fig.height=3.5}
+ggplot(iris, aes(Sepal.Length, Petal.Length)) +
+  geom_point() +
+  facet_wrap(~ Species, ncol = 3) +
+  labs(x = "Sepal length (cm)", y = "Petal length (cm)") +
+  theme_minimal()
+```
+
+### Petal width distribution by species
+
+#### Base R
+
+```{r boxplot-base}
+# Boxplot: one box per species, outliers hidden (the points are added below)
+boxplot(Petal.Width ~ Species, data = iris,
+        col = c("salmon", "lightgreen", "lightblue"),
+        ylab = "Petal width (cm)",
+        outline = FALSE)
+
+# Add the individual points with some horizontal jitter
+stripchart(Petal.Width ~ Species, data = iris,
+           vertical = TRUE, method = "jitter", jitter = 0.15,
+           pch = 16, cex = 0.6, add = TRUE)
+```
+
+#### ggplot2
+
+```{r boxplot-ggplot}
+ggplot(iris, aes(Species, Petal.Width, fill = Species)) +
+  geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+  geom_jitter(width = 0.15, size = 1, alpha = 0.6) +
+  labs(y = "Petal width (cm)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Session info
+
+```{r session-info}
+sessionInfo()
+```
